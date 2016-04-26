@@ -14,11 +14,10 @@ public class ContatosDAO {
 	
 	private static SessionFactory factory;
 	
-	protected void inserirContato(Contato contato){
+	public void inserirContato(Contato contato){
 		
 		instanciaSessionFactory();
 		Session session = null;
-		int resultado;
 		
 		try{
 			
@@ -39,11 +38,10 @@ public class ContatosDAO {
 		
 	}
 	
-	protected void inserirTelefone(Telefone tel){
+	public void inserirTelefone(Telefone tel){
 		
 		instanciaSessionFactory();
 		Session session = null;
-		//int resultado;
 		
 		try{
 			
@@ -64,7 +62,7 @@ public class ContatosDAO {
 		
 	}
 	
-	protected Contato selecionarContatoPorId (int id) {
+	public Contato selecionarContatoPorId (int id) {
 		
 		instanciaSessionFactory();
 		
@@ -94,7 +92,7 @@ public class ContatosDAO {
 		return resultado.get(0);
 }
 	
-	protected Contato selecionarContatoPorNome (String nome) {
+	public Contato selecionarContatoPorNome (String nome) {
 		
 		instanciaSessionFactory();
 		
@@ -124,7 +122,7 @@ public class ContatosDAO {
 		return resultado.get(0);
 	}
 	
-	protected List <Contato> listarContatos(){
+	public List <Contato> listarContatos(){
 
 		instanciaSessionFactory();
 		
@@ -157,7 +155,7 @@ public class ContatosDAO {
 		return resultado;
 	}
 	
-	protected Telefone selecionarTelefonePorNumero (String numeroTelefone){
+	public Telefone selecionarTelefonePorNumero (String numeroTelefone){
 		
 		instanciaSessionFactory();
 		
@@ -187,7 +185,7 @@ public class ContatosDAO {
 		return resultado.get(0);
 	}
 	
-	protected Telefone selecionarTelefonePorId (int id) {
+	public Telefone selecionarTelefonePorId (int id) {
 		
 		instanciaSessionFactory();
 		
@@ -217,7 +215,7 @@ public class ContatosDAO {
 		return resultado.get(0);
 }
 	
- 	protected List <Telefone> listarTelefonesPorIdContato (int idContato){
+ 	public List <Telefone> listarTelefonesPorIdContato (int idContato){
 		
 		instanciaSessionFactory();
 		
@@ -245,7 +243,7 @@ public class ContatosDAO {
 		return resultado;
 	}
 	
-	protected void instanciaSessionFactory(){
+	public void instanciaSessionFactory(){
 		
 		if (factory == null){
 			try{
@@ -258,7 +256,7 @@ public class ContatosDAO {
 		}
 	}
 	
-	protected void atualizarContato (Contato contato){
+	public void atualizarContato (Contato contato){
 		
 		instanciaSessionFactory();
 		Session session = null;
@@ -282,7 +280,7 @@ public class ContatosDAO {
 		
 	}
 	
-	protected void atualizarTelefone (Telefone tel){
+	public void atualizarTelefone (Telefone tel){
 		
 		instanciaSessionFactory();
 		Session session = null;
@@ -306,7 +304,7 @@ public class ContatosDAO {
 		}
 	}
 	
-	protected void removerContato (Contato contato){
+	public void removerContato (Contato contato){
 		
 		instanciaSessionFactory();
 		Session session = null;
@@ -329,7 +327,7 @@ public class ContatosDAO {
 		}
 	}
 
-	protected void removerTelefone (Telefone tel){
+	public void removerTelefone (Telefone tel){
 
 		instanciaSessionFactory();
 		Session session = null;
@@ -341,7 +339,9 @@ public class ContatosDAO {
 			
 			session.beginTransaction();
 			session.delete("Telefone", tel);
+			session.flush();
 			session.getTransaction().commit();
+			
 			
 		}catch (Exception e){
 			

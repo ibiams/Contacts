@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,9 @@ public class Contato {
 	
 	private List <Telefone> telefones;
 	
-	public Contato() {}
+	public Contato() {
+		id = 0;
+	}
 	
 	public Contato(String nome, String email) {
 		this.nome = nome;
@@ -55,7 +58,7 @@ public class Contato {
 		this.email = email;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contatos")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contatos", fetch=FetchType.EAGER)
 	public List <Telefone> getTelefones() {
 		return telefones;
 	}
